@@ -40,7 +40,8 @@ end
 set autoindent
 set ruler
 set laststatus=2
-set nobackup
+set backupdir=/tmp
+set directory=/tmp
 set backspace=start,eol,indent
 set textwidth=0
 
@@ -62,11 +63,19 @@ autocmd FileType * try | execute "compiler ".&filetype | catch /./ | endtry
 map ; :make<CR>
 
 " map fuzzy finder to cmd t
-map <C-T> :FufFile<CR>
+map <C-T> :FufCoverageFile<CR>
 
 " make fuzzy finder use tabs by default
 let g:fuf_keyOpenTabpage = "<CR>"
 let g:fuf_keyOpen = "<C-l>"
+let g:fuf_coveragefile_exclude = '\v\~$' 
+\ . '|\.(o|gif|GIF|png|PNG|jpg|JPG|class|CLASS|swp)$'
+\ . '|\/\.[^\/]*$'
+\ . '|^\.[^\/]*$'
+\ . '|(^|[/\\])\.(svn|hg|git|bzr)($|[/\\])' 
+\ . '|(^|[/\\])node_modules[/\\]' 
+\ . '|(^|[/\\])log[/\\]' 
+\ . '|.*[/\\]$' 
 
 " tab nav keys
 map <D-S-Left> :tabprevious<CR>
