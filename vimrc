@@ -1,4 +1,17 @@
-call pathogen#infect()
+set nocompatible
+filetype off
+
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+Bundle 'git://github.com/vim-scripts/Arduino-syntax-file.git'
+Bundle 'git://github.com/kchmck/vim-coffee-script.git'
+Bundle 'git://github.com/wavded/vim-stylus.git'
+Bundle 'git://github.com/kien/ctrlp.vim.git'
+Bundle 'git://github.com/mileszs/ack.vim.git'
+Bundle 'git://github.com/altercation/vim-colors-solarized.git'
+
+filetype plugin indent on
 
 " dial down ESC key timeout
 set timeoutlen=250
@@ -7,7 +20,7 @@ let mapleader=","
 
 if has("gui_running") || (&t_Co >= 256)
   syntax on
-  colorscheme ir_black_mod
+  colorscheme solarized
   set background=dark 
 elseif (&t_Co > 2)
   syntax on
@@ -18,7 +31,6 @@ end
 nnoremap / /\v
 vnoremap / /\v
 
-set nocompatible
 set encoding=utf-8 nobomb
 set expandtab shiftwidth=2 tabstop=2
 set noerrorbells
@@ -33,7 +45,8 @@ set smartcase
 set incsearch
 set hlsearch
 " clear searches with leader-space
-noremap <leader><space> :noh<cr>
+nnoremap <leader><space> :noh<cr>
+nnoremap <leader>; :make<cr>
 set showmatch
 
 " I never use F1
@@ -64,6 +77,9 @@ noremap <C-=>:call ToggleFont()<CR>
 nnoremap <Leader>A :Ack <cword><CR>
 nnoremap <leader>a :Ack
 nnoremap <Leader>m :wa \|! NOCOLOR=1 coffee %:p<CR>
+
+let coffee_compile_vert = 1
+nnoremap <Leader>p :CoffeeCompile<cr>
 
 " exit back to normal mode with jj
 inoremap jj <ESC>
