@@ -6,6 +6,7 @@ call vundle#rc()
 
 Bundle 'git://github.com/vim-scripts/Arduino-syntax-file.git'
 Bundle 'git://github.com/kchmck/vim-coffee-script.git'
+Bundle 'git://github.com/mtscout6/vim-cjsx.git'
 Bundle 'git://github.com/wavded/vim-stylus.git'
 Bundle 'git://github.com/kien/ctrlp.vim.git'
 Bundle 'git://github.com/rking/ag.vim.git'
