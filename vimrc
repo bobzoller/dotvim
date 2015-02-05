@@ -11,6 +11,7 @@ Bundle 'git://github.com/wavded/vim-stylus.git'
 Bundle 'git://github.com/kien/ctrlp.vim.git'
 Bundle 'git://github.com/rking/ag.vim.git'
 Bundle 'git://github.com/altercation/vim-colors-solarized.git'
+Bundle 'git://github.com/Valloric/YouCompleteMe.git'
 
 source /usr/local/lib/python2.7/site-packages/powerline/bindings/vim/plugin/powerline.vim
 set laststatus=2
