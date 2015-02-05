@@ -36,6 +36,8 @@ end
 nnoremap / /\v
 vnoremap / /\v
 
+set number
+
 set encoding=utf-8 nobomb
 set expandtab shiftwidth=2 tabstop=2
 set noerrorbells
