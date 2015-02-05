@@ -60,7 +60,8 @@ vnoremap <F1> <ESC>
 if has("gui_running")
   "set gfn=ProFontX:h9.00
   "set noanti
-  set guifont=Inconsolata-dz\ for\ Powerline:h12
+  "set guifont=Inconsolata-dz\ for\ Powerline:h12
+  set guifont=Hermit:h12
   set linespace=1
 end
 
