@@ -8,7 +8,7 @@ Bundle 'git://github.com/vim-scripts/Arduino-syntax-file.git'
 Bundle 'git://github.com/kchmck/vim-coffee-script.git'
 Bundle 'git://github.com/wavded/vim-stylus.git'
 Bundle 'git://github.com/kien/ctrlp.vim.git'
-Bundle 'git://github.com/mileszs/ack.vim.git'
+Bundle 'git://github.com/rking/ag.vim.git'
 Bundle 'git://github.com/altercation/vim-colors-solarized.git'
 
 filetype plugin indent on
@@ -74,8 +74,8 @@ fun! ToggleFont()
   endif
 endfun
 noremap <C-=>:call ToggleFont()<CR>
-nnoremap <Leader>A :Ack <cword><CR>
-nnoremap <leader>a :Ack
+nnoremap <Leader>A :Ag <cword><CR>
+nnoremap <leader>a :Ag
 nnoremap <Leader>m :wa \|! NOCOLOR=1 coffee %:p<CR>
 
 let coffee_compile_vert = 1
