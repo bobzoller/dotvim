@@ -11,6 +11,9 @@ Bundle 'git://github.com/kien/ctrlp.vim.git'
 Bundle 'git://github.com/rking/ag.vim.git'
 Bundle 'git://github.com/altercation/vim-colors-solarized.git'
 
+source /usr/local/lib/python2.7/site-packages/powerline/bindings/vim/plugin/powerline.vim
+set laststatus=2
+
 filetype plugin indent on
 
 " dial down ESC key timeout
@@ -57,7 +60,7 @@ vnoremap <F1> <ESC>
 if has("gui_running")
   "set gfn=ProFontX:h9.00
   "set noanti
-  set gfn=Inconsolata:h13.00
+  set guifont=Inconsolata-dz\ for\ Powerline:h12
   set linespace=1
 end
 
