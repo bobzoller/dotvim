@@ -11,12 +11,34 @@ Bundle 'git://github.com/wavded/vim-stylus.git'
 Bundle 'git://github.com/kien/ctrlp.vim.git'
 Bundle 'git://github.com/rking/ag.vim.git'
 Bundle 'git://github.com/altercation/vim-colors-solarized.git'
-Bundle 'git://github.com/Valloric/YouCompleteMe.git'
+Bundle 'git://github.com/Shougo/neocomplete.vim.git'
+Bundle 'git://github.com/lepture/vim-jinja.git'
+Bundle 'git://github.com/smerrill/vcl-vim-plugin.git'
+Bundle 'git://github.com/fatih/vim-go.git'
+Bundle 'git://github.com/tpope/vim-fugitive.git'
+Bundle 'git://github.com/hashivim/vim-terraform.git'
+Bundle 'git://github.com/pangloss/vim-javascript.git'
+Bundle 'git://github.com/mxw/vim-jsx.git'
+Bundle 'git://github.com/JamshedVesuna/vim-markdown-preview.git'
+Bundle 'git://github.com/ruanyl/vim-gh-line.git'
 
-source /usr/local/lib/python2.7/site-packages/powerline/bindings/vim/plugin/powerline.vim
+" copy github links to clipboard
+let g:gh_open_command = 'pbcopy <<< '
+
+" use grip for github markdown previews
+let vim_markdown_preview_github=1
+
+let g:jsx_ext_required = 0 " Allow JSX in normal JS files
+
 set laststatus=2
 
+au BufNewFile,BufReadPost *.md set filetype=markdown
+let g:markdown_fenced_languages = ['coffee', 'css', 'erb=eruby', 'javascript', 'js=javascript', 'json=javascript', 'ruby', 'sass', 'xml', 'html']
+
 filetype plugin indent on
+
+" trim trailing whitespace
+"autocmd FileType r,js,coffee autocmd BufWritePre <buffer> :%s/\s\+$//e
 
 " dial down ESC key timeout
 set timeoutlen=250
@@ -64,26 +86,13 @@ vnoremap <F1> <ESC>
 if has("gui_running")
   "set gfn=ProFontX:h9.00
   "set noanti
-  "set guifont=Inconsolata-dz\ for\ Powerline:h12
+  "set guifont=Inconsolata:h12
   set guifont=Hermit:h12
   set linespace=1
 end
 
-let g:fontie="smaller"
-fun! ToggleFont()
-  if g:fontie == "smaller"
-    let g:fontie = "bigger"
-    set gfn=Monaco:h13.00
-    set anti
-  elseif g:fontie == "bigger"
-    let g:fontie = "smaller"
-    set gfn=ProFontX:h9.00
-    set noanti
-  endif
-endfun
-noremap <C-=>:call ToggleFont()<CR>
-nnoremap <Leader>A :Ag <cword><CR>
-nnoremap <leader>a :Ag
+nnoremap <Leader>A :Ag! <cword><CR>
+nnoremap <leader>a :Ag!
 nnoremap <Leader>m :wa \|! NOCOLOR=1 coffee %:p<CR>
 
 let coffee_compile_vert = 1
@@ -104,7 +113,7 @@ set textwidth=0
 set hidden
 
 " autosave modified buffers
-autocmd BufLeave,FocusLost silent! wall
+autocmd BufLeave,FocusLost * silent! wall
 
 " omni autocomplete in insert mode:
 " imap <C-SPACE>	<C-X><C-O>
@@ -121,20 +130,11 @@ autocmd FileType * try | execute "compiler ".&filetype | catch /./ | endtry
 " ctrlp config
 let g:ctrlp_open_new_file = 't'
 let g:ctrlp_open_multiple_files = '2t'
-let g:ctrlp_user_command = ['.git/', 'cd %s && git ls-files']
+let g:ctrlp_user_command = ['.git/', 'cd %s && git ls-files -c -o --exclude-standard | grep -v Godeps/_workspace']
 let g:ctrlp_map = '<C-t>'
 let g:ctrlp_custom_ignore = '\.'
-"let g:ctrlp_custom_ignore = '\v\~$' 
-"\ . '|\.(o|gif|GIF|png|PNG|jpg|JPG|class|CLASS|swp)$'
-"\ . '|\/\.[^\/]*$'
-"\ . '|^\.[^\/]*$'
-"\ . '|(^|[/\\])\.(svn|hg|git|bzr)($|[/\\])' 
-"\ . '|(^|[/\\])node_modules[/\\]' 
-"\ . '|(^|[/\\])log[/\\]' 
-"\ . '|.*[/\\]$' 
 
-" tab nav keys
-map <D-S-Left> :tabprevious<CR>
-map <D-S-Right> :tabnext<CR>
-
-map <F10> :! coffeetags -f tags `git ls-files\|grep -e '\\.coffee$'`<CR>
+let g:neocomplete#enable_at_startup = 1
+let g:neocomplete#enable_smart_case = 1
+let g:neocomplete#sources#syntax#min_keyword_length = 999
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
